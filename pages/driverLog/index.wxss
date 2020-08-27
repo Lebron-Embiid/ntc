@@ -1,0 +1,45 @@
+/* pages/driverLog/index.wxss */
+.driver_log{
+  background: #ffffff;
+}
+.log_item{
+  padding: 30rpx;
+  box-sizing: border-box;
+  border-bottom: 15rpx solid #f1f1f1;
+}
+.log_title{
+  color: #333333;
+  font-size: 36rpx;
+  margin-bottom: 30rpx;
+  font-weight: bold;
+}
+.log_view{
+  padding-left: 40rpx;
+}
+.log_view text{
+  display: block;
+  margin-bottom: 20rpx;
+}
+.time_line{
+  position: relative;
+  margin-bottom: 20rpx;
+  color: #0c5bda;
+  font-size: 22rpx;
+}
+.time_line:after{
+  content: '';
+  width: 80%;
+  height: 2rpx;
+  background: #0c5bda;
+  position: absolute;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+}
+.bottom_view{
+  text-align: right;
+}
+.bottom_view text{
+  display: block;
+  margin-top: 10rpx;
+}

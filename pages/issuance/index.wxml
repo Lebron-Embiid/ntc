@@ -1,0 +1,44 @@
+<!--pages/editCoupon/index.wxml-->
+<view class="form_box">
+  <form bindsubmit="submitForm">
+    <view class="title">泥票发行区</view>
+    <view class="form_item">
+      <text class="form_txt">泥票名称</text>
+      <view class="form_content"><input placeholder="请输入泥票名称" value="{{coupon_name}}" bindinput="getCouponName"></input></view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">泥票售价</text>
+      <view class="form_content"><input placeholder="请输入泥票价格" type="number" value="{{price}}" bindinput="getPrice"></input></view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">泥票面额</text>
+      <view class="form_content"><input placeholder="请输入泥票面额" type="number" value="{{face}}" bindinput="getFace"></input></view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">泥票有效时间</text>
+      <view class="form_content">
+        <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+          <view class="picker">
+            {{date_txt}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">泥票有效次数</text>
+      <view class="form_content"><input placeholder="请输入泥票有效次数" type="number" value="{{count}}" bindinput="getCount"></input></view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">代理人收益（每张）</text>
+      <view class="form_content"><input placeholder="请输入代理人收益" type="number" value="{{profit}}" bindinput="getProfit"></input></view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">促销券使用频率（小时）</text>
+      <view class="form_content"><input placeholder="请输入促销券使用频率" type="number" value="{{frequence}}" bindinput="getFrequence"></input></view>
+    </view>
+    <view class="btn_box">
+      <button size="mini" bindtap="save" class="left" type="primary">保存</button>
+      <button size="mini" form-type="submit" type="primary">发行</button>
+    </view>
+  </form>
+</view>

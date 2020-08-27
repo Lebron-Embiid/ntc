@@ -1,0 +1,49 @@
+{
+  "pages":[
+    "pages/market/index",
+    "pages/ticket/index",
+    "pages/myAgent/index",
+    "pages/profitDetail/index",
+    "pages/company/index",
+    "pages/issuance/index",
+    "pages/search/index",
+    "pages/person/index",
+    "pages/merchant/index",
+    "pages/reserve/index",
+    "pages/driverLog/index",
+    "pages/index/index",
+    "pages/logs/logs"
+  ],
+  "window":{
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "泥头车友",
+    "navigationBarTextStyle":"black"
+  },
+  "tabBar": {
+    "color": "#8a8a8a",
+    "selectedColor": "#3f51b5",
+    "list": [
+      {
+        "pagePath": "pages/market/index",
+        "text": "首页",
+        "iconPath": "/assets/tabbar1.png",
+        "selectedIconPath": "/assets/tabbar1_on.png"
+      },
+      {
+        "pagePath": "pages/company/index",
+        "text": "公司",
+        "iconPath": "/assets/tabbar2.png",
+        "selectedIconPath": "/assets/tabbar2_on.png"
+      },
+      {
+        "pagePath": "pages/person/index",
+        "text": "我的",
+        "iconPath": "/assets/tabbar3.png",
+        "selectedIconPath": "/assets/tabbar3_on.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

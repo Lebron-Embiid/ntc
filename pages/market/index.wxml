@@ -1,0 +1,20 @@
+<!--pages/market/index.wxml-->
+<view class="market_box">
+  <view class="title">泥票市场</view>
+  <view class="market_item" bindtap="clickMarket" data-index="{{index}}" wx:for="{{marketList}}" wx:key="index" style="background:linear-gradient(180deg, {{item.bgColor[0]}}, {{item.bgColor[1]}});box-shadow: 0 0 10rpx 5 {{item.shadowColor}};">
+    <view class="market_left">
+      <view class="ml_title">{{item.title}}</view>
+      <view class="ml_label">
+        <view class="ml_label_txt" wx:for="{{item.label}}" wx:for-index="idx" wx:for-item="label" wx:key="idx">{{label}}</view>
+      </view>
+      <view class="ml_title">{{item.type}}</view>
+      <view class="ml_type" wx:for="{{item.typeList}}" wx:for-index="ind" wx:for-item="types" wx:key="ind">
+        <view class="ml_type_txt">{{types}}</view>
+      </view>
+    </view>
+    <view class="market_right">
+      <image src="{{item.icon}}"></image>
+    </view>
+  </view>
+  <view class="bottom_words">更多服务敬请期待~</view>
+</view>

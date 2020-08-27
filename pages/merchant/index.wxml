@@ -1,0 +1,224 @@
+<!--pages/merchant/index.wxml-->
+<view class="form_box" wx:if="{{is_pass == 0}}">
+  <form bindsubmit="submitForm">
+    <view class="title">企业信息*</view>
+    <view class="form_item">
+      <text class="form_txt">企业名称</text>
+      <view class="form_content"><input placeholder="请输入企业名称" value="{{company_name}}" bindinput="getCompanyName"></input></view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">法人名称</text>
+      <view class="form_content"><input placeholder="请输入法人名称" value="{{person_name}}" bindinput="getPersonName"></input></view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">统一社会信用代码</text>
+      <view class="form_content"><input placeholder="请输入统一社会信用代码" type="text" value="{{person_code}}" bindinput="getPersonCode"></input></view>
+    </view>
+    <!-- 泥头开工所需手续 -->
+    <view class="form_item">
+      <text class="form_txt">中标通知书</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseHeadPic1">
+          <text wx:if="{{is_head_pic1 == 0}}">+</text>
+          <image wx:else src="{{head_pic1}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">开工许可证</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseHeadPic2">
+          <text wx:if="{{is_head_pic2 == 0}}">+</text>
+          <image wx:else src="{{head_pic2}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">进场通知书</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseHeadPic3">
+          <text wx:if="{{is_head_pic3 == 0}}">+</text>
+          <image wx:else src="{{head_pic3}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">运输路线报批</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseHeadPic4">
+          <text wx:if="{{is_head_pic4 == 0}}">+</text>
+          <image wx:else src="{{head_pic4}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">管理人员报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseHeadPic5">
+          <text wx:if="{{is_head_pic5 == 0}}">+</text>
+          <image wx:else src="{{head_pic5}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+
+    <!-- 组建深圳泥头车公司要求 -->
+    <view class="form_item">
+      <text class="form_txt">营业执照</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseHeadPic6">
+          <text wx:if="{{is_head_pic6 == 0}}">+</text>
+          <image wx:else src="{{head_pic6}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">泥头车运输达标许可证</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseHeadPic7">
+          <text wx:if="{{is_head_pic7 == 0}}">+</text>
+          <image wx:else src="{{head_pic7}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 运输车辆 -->
+    <view class="form_item">
+      <text class="form_txt">驾驶驾驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseTransportPic1">
+          <text wx:if="{{is_transport_pic1 == 0}}">+</text>
+          <image wx:else src="{{transport_pic1}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">驾驶上岗证</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseTransportPic2">
+          <text wx:if="{{is_transport_pic2 == 0}}">+</text>
+          <image wx:else src="{{transport_pic2}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">开工车辆行驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseTransportPic3">
+          <text wx:if="{{is_transport_pic3 == 0}}">+</text>
+          <image wx:else src="{{transport_pic3}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+
+    <!-- 泥尾：码头弃土点 -->
+    <view class="form_item">
+      <text class="form_txt">码头装缷许可证</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic1">
+          <text wx:if="{{is_end_pic1 == 0}}">+</text>
+          <image wx:else src="{{end_pic1}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">进港土方报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic2">
+          <text wx:if="{{is_end_pic2 == 0}}">+</text>
+          <image wx:else src="{{end_pic2}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">码头进港驾驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic3">
+          <text wx:if="{{is_end_pic3 == 0}}">+</text>
+          <image wx:else src="{{end_pic3}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">码头进港车辆行驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic4">
+          <text wx:if="{{is_end_pic4 == 0}}">+</text>
+          <image wx:else src="{{end_pic4}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+
+    <!-- 泥尾：受纳场 -->
+    <view class="form_item">
+      <text class="form_txt">受纳场许可证</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic5">
+          <text wx:if="{{is_end_pic5 == 0}}">+</text>
+          <image wx:else src="{{end_pic5}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">进场土方报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic6">
+          <text wx:if="{{is_end_pic6 == 0}}">+</text>
+          <image wx:else src="{{end_pic6}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">进场驾驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic7">
+          <text wx:if="{{is_end_pic7 == 0}}">+</text>
+          <image wx:else src="{{end_pic7}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">进场车辆行驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic8">
+          <text wx:if="{{is_end_pic8 == 0}}">+</text>
+          <image wx:else src="{{end_pic8}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+
+    <!-- 泥尾：施工用土 -->
+    <view class="form_item">
+      <text class="form_txt">进工地土方报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic9">
+          <text wx:if="{{is_end_pic9 == 0}}">+</text>
+          <image wx:else src="{{end_pic9}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">进工地驾驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic10">
+          <text wx:if="{{is_end_pic10 == 0}}">+</text>
+          <image wx:else src="{{end_pic10}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">进场工地车辆行驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic11">
+          <text wx:if="{{is_end_pic11 == 0}}">+</text>
+          <image wx:else src="{{end_pic11}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+
+    <button form-type="submit" class="submit_btn" type="primary">提交</button>
+  </form>
+</view>
+
+<view class="till" wx:else>
+  已提交成功，等待审批。
+</view>

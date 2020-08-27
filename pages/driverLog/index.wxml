@@ -1,0 +1,24 @@
+<!--pages/driverLog/index.wxml-->
+<view class="driver_log">
+  <view class="log_item" wx:for="{{logList}}" wx:key="index">
+    <view class="log_title">目标：{{item.aims}}</view>
+    <view class="log_view">
+      <text>泥尾场状况：{{item.status}}</text>
+      <text>泥尾场排队：{{item.queue}}</text>
+      <text>泥尾场预约：{{item.reserve}}</text>
+      <text>泥尾场天气：中雨</text>
+    </view>
+    <view class="time_line">{{item.time}}</view>
+    <view class="log_view">
+      <text>预计还需要行驶：{{item.overtime}}</text>
+      <text>到达泥尾场时间：{{arrivetime}}</text>
+      <text>当前收益：{{item.income}}</text>
+      <text>深莞线常平泥尾：{{item.price}}元/车</text>
+    </view>
+    <view class="bottom_view">
+      <text>与昨天比较</text>
+      <text>与平均值比较</text>
+      <text>收益累计：{{item.all_price}}元</text>
+    </view>
+  </view>
+</view>

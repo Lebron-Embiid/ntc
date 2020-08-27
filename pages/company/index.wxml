@@ -1,0 +1,16 @@
+<!--pages/company/index.wxml-->
+<view class="company_body">
+  <image src="/assets/back.jpg" class="bg_pic"></image>
+  <view class="company_box">
+    <view class="company_item" wx:for="{{companyList}}" data-index="{{index}}" wx:key="index" bindtap="clickCompany">
+      <view><image src="{{item.icon}}"></image></view>
+      <text>{{item.title}}</text>
+    </view>
+  </view>
+  <view class="company_box">
+    <view class="company_item" wx:for="{{navList}}" data-index="{{index}}" wx:key="index" bindtap="clickNav">
+      <view><image src="{{item.icon}}"></image></view>
+      <text>{{item.title}}</text>
+    </view>
+  </view>
+</view>

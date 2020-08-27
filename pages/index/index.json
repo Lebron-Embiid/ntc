@@ -1,0 +1,6 @@
+{
+  "usingComponents": {
+    "user-btn": "/components/user-btn/user-btn",
+    "user-phone": "/components/user-phone/user-phone"
+  }
+}

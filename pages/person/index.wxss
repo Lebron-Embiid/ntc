@@ -1,0 +1,21 @@
+/* pages/person/index.wxss */
+.person_avatar{
+  width:152rpx;
+  height:152rpx;
+  border:2px solid rgba(107,161,233,1);
+  border-radius:50%;
+  margin: 0 auto;
+  padding: 10rpx;
+  box-sizing: border-box;
+}
+.person_avatar image{
+  display: block;
+  width: 100%;
+  height: 100% !important;
+  background: #999;
+  border-radius: 50%;
+}
+.person_name{
+  color: #37444A;
+  font-size: 40rpx;
+}

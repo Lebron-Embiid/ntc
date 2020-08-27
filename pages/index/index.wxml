@@ -1,0 +1,11 @@
+<!--index.wxml-->
+<view class="container">
+  <!-- <user-btn bind:mylogin="getUserLogin">
+    
+  </user-btn>
+  <user-phone bind:myphone="getPhoneNumber">
+    
+  </user-phone> -->
+  
+  
+</view>

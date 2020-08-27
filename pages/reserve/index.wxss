@@ -1,0 +1,86 @@
+/* pages/reserve/index.wxss */
+.reserve_box{
+  box-sizing: border-box;
+}
+.reserve_item{
+  padding: 10rpx 30rpx 30rpx;
+  box-sizing: border-box;
+}
+.reserve_date{
+  margin-bottom: 20rpx;
+  font-size: 30rpx;
+  font-weight: bold;
+}
+.reserve_content{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+.reserve_left{
+  font-size: 28rpx;
+}
+.reserve_right{
+  width: 82%;
+  border-radius: 20rpx;
+  font-size: 26rpx;
+  padding-top: 15rpx;
+}
+.res_title{
+  font-size: 30rpx;
+  padding-left: 30rpx;
+}
+.res_view{
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  padding: 15rpx 20rpx 15rpx 30rpx;
+  box-sizing: border-box;
+}
+.border{
+  border-bottom: 2rpx solid #f3dcc5;
+}
+.res_left image{
+  width: 30rpx;
+  height: 30rpx;
+  margin-right: 15rpx;
+}
+.res_view .arrow{
+  width: 30rpx;
+  height: 30rpx;
+}
+.res_center{
+  width: 75%;
+  text-align: left;
+}
+.res_right{
+  width: 25%;
+  text-align: right;
+}
+.reserve_txt{
+  font-size: 26rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.reserve_txt text{
+  display: block;
+  width: 10rpx;
+  height: 10rpx;
+  border-radius: 50%;
+  margin-right: 8rpx;
+}
+.card_txt{
+  color: #858788;
+  font-size: 26rpx;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+.submit_txt{
+  color: #9d683c;
+  font-size: 28rpx;
+}
+.finish_txt{
+  color: #a1a5b3;
+  font-size: 28rpx;
+}

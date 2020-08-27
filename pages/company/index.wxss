@@ -1,0 +1,43 @@
+/* pages/company/index.wxss */
+.company_body{
+  position: relative;
+}
+.company_body .bg_pic{
+  position: absolute;
+  width: 100vw;
+  height: 100vh;
+  left: 0;
+  top: 0;
+}
+.company_box{
+  padding: 30rpx 30rpx 0;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  position: relative;
+  z-index: 5;
+}
+.company_item{
+  width: 50%;
+  text-align: center;
+  margin-bottom: 40rpx;
+}
+.company_item view{
+  width: 120rpx;
+  height: 120rpx;
+  margin: 0 auto 10rpx;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.company_item image{
+  display: block;
+  width: 120rpx;
+  height: 120rpx;
+}
+.company_item text{
+  font-size: 30rpx;
+  font-weight: bold;
+}

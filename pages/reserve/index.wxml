@@ -1,0 +1,47 @@
+<!--pages/reserve/index.wxml-->
+<view class="reserve_box">
+  <view class="reserve_item" wx:for="{{reserveList}}" wx:key="index">
+    <view class="reserve_date">{{item.date}}</view>
+    <view class="reserve_content">
+      <view class="reserve_left">{{item.time}}</view>
+      <view class="reserve_right" style="background: {{item.type==0?'#fce7d4':'#f2f3f7'}}">
+        <view class="res_title">{{item.title}}</view>
+        <view class="res_view">
+          <view class="res_left"><image src="/assets/reserve_icon1.svg"></image></view>
+          <view class="res_center">{{item.address}}</view>
+          <view class="res_right"></view>
+        </view>
+        <view class="res_view">
+          <view class="res_left"><image src="/assets/reserve_icon2.svg"></image></view>
+          <view class="res_center">
+            <view>{{item.type==0?'泥头场':'泥尾场'}}状态：</view>
+            <view>开放：{{item.open_time}}</view>
+          </view>
+          <view class="res_right"></view>
+        </view>
+        <view class="res_view border" style="border-color: {{item.type==0?'#f3dcc5':'#e8eef2'}}">
+          <view class="res_left"><image src="/assets/reserve_icon3.svg"></image></view>
+          <view class="res_center">泥头票{{item.ticket==''?item.ticket:'：'+item.ticket+'元'}}</view>
+          <view class="res_right reserve_txt"><text style="background: {{item.type==0?'#28b0af':'#0000fd'}}"></text>预约</view>
+        </view>
+        <view class="res_view border" style="border-color: {{item.type==0?'#f3dcc5':'#e8eef2'}}">
+          <view class="res_left"><image src="/assets/reserve_icon4.svg"></image></view>
+          <view class="res_center">{{item.type==0?'禁行':'检查'}}点位置</view>
+          <view class="res_right">
+            <picker>
+              <view class="card_txt">
+                通行证 <image class="arrow" src="/assets/arrow.svg"></image>
+              </view>
+            </picker>
+          </view>
+        </view>
+        <view class="res_view">
+          <view class="res_left"><image></image></view>
+          <view class="res_center submit_txt" wx:if="{{item.status==0}}">预约申请提交</view>
+          <view class="res_center finish_txt" wx:else>已经预约</view>
+          <view class="res_right"></view>
+        </view>
+      </view>
+    </view>
+  </view>
+</view>
