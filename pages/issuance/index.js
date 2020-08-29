@@ -1,8 +1,11 @@
 // pages/editCoupon/index.js
 import {
-  
+  save_mud_head,
+  save_mud_tail
 } from '../../api/api.js'
 import publicFun from '../../utils/public.js'
+const uploadUrl = 'http://192.168.31.115:9091'
+// const uploadUrl = 'https://n.3p3.top'
 Page({
 
   /**
@@ -13,15 +16,60 @@ Page({
     type: '',
     coupon_name: '',
     price: '',
-    face: '',
+    address: '',
     count: '',
     date: '',
     profit: '',
     frequence: '',
-    date_txt: '请选择促销券有效时间',
+    date_txt: '请选择泥票有效时间',
+    region: '',
+    region_txt: '请选择装车所在地址',
     is_edit: false,
     couponId: '',
-    video_list: [{sort: 1,videoName: '视频1',weseeLink: ''},{sort: 2,videoName: '视频2',weseeLink: ''},{sort: 3,videoName: '视频3',weseeLink: ''}]
+    image1: '',
+    is_image1: 0,
+    head_pic1: '',
+    head_pic2: '',
+    head_pic3: '',
+    head_pic4: '',
+    head_pic5: '',
+    head_pic6: '',
+    head_pic7: '',
+    transport_pic1: '',
+    transport_pic2: '',
+    transport_pic3: '',
+    end_pic1: '',
+    end_pic2: '',
+    end_pic3: '',
+    end_pic4: '',
+    end_pic5: '',
+    end_pic6: '',
+    end_pic7: '',
+    end_pic8: '',
+    end_pic9: '',
+    end_pic10: '',
+    end_pic11: '',
+    is_head_pic1: 0,
+    is_head_pic2: 0,
+    is_head_pic3: 0,
+    is_head_pic4: 0,
+    is_head_pic5: 0,
+    is_head_pic6: 0,
+    is_head_pic7: 0,
+    is_transport_pic1: 0,
+    is_transport_pic2: 0,
+    is_transport_pic3: 0,
+    is_end_pic1: 0,
+    is_end_pic2: 0,
+    is_end_pic3: 0,
+    is_end_pic4: 0,
+    is_end_pic5: 0,
+    is_end_pic6: 0,
+    is_end_pic7: 0,
+    is_end_pic8: 0,
+    is_end_pic9: 0,
+    is_end_pic10: 0,
+    is_end_pic11: 0
   },
 
   /**
@@ -82,9 +130,8 @@ Page({
             profit: res.data!=null?res.data.profit:'',
             frequence: res.data!=null?res.data.frequence:'',
             date: res.data!=null?res.data.trem:'',
-            date_txt: res.data!=null?res.data.trem:'请选择促销券有效时间',
+            date_txt: res.data!=null?res.data.trem:'请选择泥票有效时间',
             face: res.data!=null?res.data.value:'',
-            video_list: res.data!=null?res.data.codeVideoList:this.data.video_list
           })
         }
         console.log(this.data.is_edit,this.data.couponId)
@@ -135,9 +182,9 @@ Page({
       price: e.detail.value
     })
   },
-  getFace(e){
+  getAddress(e){
     this.setData({
-      face: e.detail.value
+      address: e.detail.value
     })
   },
   getCount(e){
@@ -162,153 +209,160 @@ Page({
       date_txt: e.detail.value
     })
   },
-  getVideoName(e){
-    let index = e.currentTarget.dataset.index;
-    let videoCur = this.data.video_list;
-    videoCur[index].videoName = e.detail.value;
+  bindRegionChange: function(e) {
+    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
-      video_list: videoCur
+      region: e.detail.value,
+      region_txt: e.detail.value
     })
   },
-  getVideoUrl(e){
-    let index = e.currentTarget.dataset.index;
-    let videoCur = this.data.video_list;
-    videoCur[index].weseeLink = e.detail.value;
-    this.setData({
-      video_list: videoCur
+  chooseImage1(){
+    this.choosePic('image1','is_image1');
+  },
+  chooseHeadPic1(){
+    this.choosePic('head_pic1','is_head_pic1');
+  },
+  chooseHeadPic2(){
+    this.choosePic('head_pic2','is_head_pic2');
+  },
+  chooseHeadPic3(){
+    this.choosePic('head_pic3','is_head_pic3');
+  },
+  chooseHeadPic4(){
+    this.choosePic('head_pic4','is_head_pic4');
+  },
+  chooseHeadPic5(){
+    this.choosePic('head_pic5','is_head_pic5');
+  },
+  chooseHeadPic6(){
+    this.choosePic('head_pic6','is_head_pic6');
+  },
+  chooseHeadPic7(){
+    this.choosePic('head_pic7','is_head_pic7');
+  },
+  chooseTransportPic1(){
+    this.choosePic('transport_pic1','is_transport_pic1');
+  },
+  chooseTransportPic2(){
+    this.choosePic('transport_pic2','is_transport_pic2');
+  },
+  chooseTransportPic3(){
+    this.choosePic('transport_pic3','is_transport_pic3');
+  },
+  chooseEndPic1(){
+    this.choosePic('end_pic1','is_end_pic1');
+  },
+  chooseEndPic2(){
+    this.choosePic('end_pic2','is_end_pic2');
+  },
+  chooseEndPic3(){
+    this.choosePic('end_pic3','is_end_pic3');
+  },
+  chooseEndPic4(){
+    this.choosePic('end_pic4','is_end_pic4');
+  },
+  chooseEndPic5(){
+    this.choosePic('end_pic5','is_end_pic5');
+  },
+  chooseEndPic6(){
+    this.choosePic('end_pic6','is_end_pic6');
+  },
+  chooseEndPic7(){
+    this.choosePic('end_pic7','is_end_pic7');
+  },
+  chooseEndPic8(){
+    this.choosePic('end_pic8','is_end_pic8');
+  },
+  chooseEndPic9(){
+    this.choosePic('end_pic9','is_end_pic9');
+  },
+  chooseEndPic10(){
+    this.choosePic('end_pic10','is_end_pic10');
+  },
+  chooseEndPic11(){
+    this.choosePic('end_pic11','is_end_pic11');
+  },
+  choosePic(agrms1,agrms2){
+    var that = this;
+    publicFun.getImage(1,false,['album']).then((res)=>{
+      wx.uploadFile({
+        url: uploadUrl+'/applet/file/upload', //仅为示例，非真实的接口地址
+        filePath: res[0],
+        name: 'file',
+        header: {
+          'Authentication': wx.getStorageSync('token')
+        },
+        formData:{
+          type: ''
+        },
+        success (imgRes){
+          console.log('----ios1----'+JSON.stringify(imgRes))
+          // console.log('----ios2----'+JSON.stringify(imgRes.data))
+          // console.log('----ios3----'+JSON.parse(imgRes.data).data)
+          if(JSON.parse(imgRes.data).code == 200){
+            let img_pic = JSON.parse(imgRes.data).data;
+            console.log(img_pic,[agrms1]);
+            that.setData({
+              [agrms1]: img_pic,
+              [agrms2]: 1
+            })
+          }else{
+            wx.showModal({
+              title: "提示",
+              content: JSON.parse(imgRes.data).msg || JSON.parse(imgRes.data).message,
+              showCancel: false
+            })
+          }
+        }
+      })
     })
   },
+  
   save(){
-    if(this.data.price == ''){
-      publicFun.getToast('请输入促销券价格');
-      return;
-    }
+    // if(this.data.price == ''){
+    //   publicFun.getToast('请输入促销券价格');
+    //   return;
+    // }
     // if(this.data.face == ''){
     //   publicFun.getToast('请输入促销券面额');
     //   return;
     // }
     // if(this.data.date == ''){
-    //   publicFun.getToast('请选择促销券有效时间');
+    //   publicFun.getToast('请选择泥票有效时间');
     //   return;
     // }
-    if(this.data.count == ''){
-      publicFun.getToast('请输入促销券有效次数');
-      return;
-    }
+    // if(this.data.count == ''){
+    //   publicFun.getToast('请输入促销券有效次数');
+    //   return;
+    // }
     // if(this.data.profit == ''){
     //   publicFun.getToast('请输入代理人收益');
     //   return;
     // }
-    if(this.data.video_list[0].weseeLink == '' && this.data.video_list[1].weseeLink == '' && this.data.video_list[2].weseeLink == ''){
-      publicFun.getToast('请至少上传一个视频链接');
-      return;
-    }
-    // if(this.data.video_list[0].videoName == '' && this.data.video_list[1].videoName == '' && this.data.video_list[2].videoName == ''){
-    //   publicFun.getToast('请填写视频名称');
-    //   return;
-    // }
     let data = {
-      couponName: this.data.coupon_name,
-      imageNum: this.data.id,
+      companyId: '1',
+      companyName: '1',
+      startDate: this.data.date,
+      itemName: this.data.coupon_name,
+      address: this.data.address,
+      area: '1',
+      imageNum: this.data.image1,
       price: this.data.price,
-      trem: this.data.date,
-      count: this.data.count,
-      profit: this.data.profit,
-      frequence: this.data.frequence,
-      value: this.data.face,
-      jsonList: JSON.stringify(this.data.video_list),
+      sign: '1',
+      permit1: this.data.head_pic1,
+      permit2: this.data.head_pic2,
+      permit3: this.data.head_pic3,
+      permit4: this.data.head_pic4,
+      permit5: this.data.head_pic5,
       status: '0'
     }
-    if(this.data.is_edit == true){
-      data = {
-        couponId: this.data.couponId,
-        couponName: this.data.coupon_name,
-        imageNum: this.data.id,
-        price: this.data.price,
-        trem: this.data.date,
-        count: this.data.count,
-        profit: this.data.profit,
-        frequence: this.data.frequence,
-        value: this.data.face,
-        jsonList: JSON.stringify(this.data.video_list),
-        status: '0'
-      }
-    }
-    editCoupon(data).then((res)=>{
+    save_mud_head(data).then((res)=>{
       if(res.code == 200){
-        if(this.data.type == 'custom'){
-          console.log('自定义保存成功：'+res.data);
-          let pages = getCurrentPages(); // 当前页的数据，
-          let prevPage = pages[pages.length - 2]; // 上一页的数据
-          prevPage.setData({
-            is_edit_back: true // 修改上一页的属性值；
-          })
-          wx.setStorageSync('custom', res.data.imageNum);
-        }
-        this.getEditFinish('save');
+        
       }
     })
   },
   submitForm(e){
-    if(this.data.video_list[0].weseeLink == '' && this.data.video_list[1].weseeLink == '' && this.data.video_list[2].weseeLink == ''){
-      publicFun.getToast('请至少上传一个视频链接');
-      return;
-    }
-    // if(this.data.video_list[0].videoName == '' && this.data.video_list[1].videoName == '' && this.data.video_list[2].videoName == ''){
-    //   publicFun.getToast('请填写视频名称');
-    //   return;
-    // }
-    let data = {
-      couponName: this.data.coupon_name,
-      imageNum: this.data.id,
-      price: this.data.price,
-      trem: this.data.date,
-      count: this.data.count,
-      profit: this.data.profit,
-      frequence: this.data.frequence,
-      value: this.data.face,
-      jsonList: JSON.stringify(this.data.video_list),
-      status: '1'
-    }
-    if(this.data.is_edit == true){
-      data = {
-        couponId: this.data.couponId,
-        couponName: this.data.coupon_name,
-        imageNum: this.data.id,
-        price: this.data.price,
-        trem: this.data.date,
-        count: this.data.count,
-        profit: this.data.profit,
-        frequence: this.data.frequence,
-        value: this.data.face,
-        jsonList: JSON.stringify(this.data.video_list),
-        status: '1'
-      }
-    }
-    editCoupon(data).then((res)=>{
-      if(res.code == 200){
-        let video_list = [{sort: 1,videoName: '',weseeLink: ''},{sort: 2,videoName: '',weseeLink: ''},{sort: 3,videoName: '',weseeLink: ''}];
-        this.setData({
-          coupon_name: '',
-          price: '',
-          date: '',
-          date_txt: '请选择促销券有效时间',
-          count: '',
-          profit: '',
-          frequence: '',
-          face: '',
-          video_list: video_list
-        })
-        publicFun.getToast('发行成功');
-        if(this.data.type == 'custom'){
-          wx.removeStorageSync('custom');
-        }
-        setTimeout(()=>{
-          wx.navigateBack({
-            delta: 1
-          })
-        },1500)
-      }
-    })
+    
   }
 })

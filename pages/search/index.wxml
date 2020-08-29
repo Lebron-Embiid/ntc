@@ -1,1 +1,9 @@
 <!--pages/search/index.wxml-->
+<wxs module="status" src="../../filter/status.wxs"></wxs>
+<view class="search_box">
+  <view class="search_item" wx:for="{{searchList}}" wx:key="index">
+    <view style="width: 70%;"><text>{{item.companyName}}</text></view>
+    <button wx:if="{{item.status == 'n'}}" type="default" size="mini" data-id="{{item.companyId}}" data-index="{{index}}" bindtap="clickApply">申请</button>
+    <text wx:else style="color: #999999;font-size: 26rpx">{{status.filterStatus(item.status)}}</text>
+  </view>
+</view>

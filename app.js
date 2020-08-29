@@ -9,18 +9,13 @@ App({
     wx.checkSession({
       success () {
         console.log('登录未过期');
-        wx.setStorage({
-          data: 1,
-          key: 'check',
-        })
+        wx.setStorageSync('check', 1);
         //session_key 未过期，并且在本生命周期一直有效
       },
       fail () {
         console.log('登录已过期');
-        wx.setStorage({
-          data: 2,
-          key: 'check',
-        })
+        wx.setStorageSync('check', 2);
+        wx.removeStorageSync('userInfo');
         // session_key 已经失效，需要重新执行登录流程
       }
     })

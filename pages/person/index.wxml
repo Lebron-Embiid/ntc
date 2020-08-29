@@ -1,11 +1,17 @@
 <!--pages/person/index.wxml-->
 <view>
-  <button class="login" wx:if="{{!is_auth}}" open-type="getPhoneNumber" bind:getphonenumber="getPhoneNumber" type="default" lang='zh_CN'>
-    <view class="person_avatar"><image src="{{userInfo.headPortraitLink?userInfo.headPortraitLink:'/assets/avatar.svg'}}" mode="widthFix"></image></view>
-    <view class="person_name">{{userInfo.nickname?userInfo.nickname:'点击登录账户'}}</view>
-  </button>
-  <button class="login" wx:else open-type="getUserInfo" bind:getuserinfo="getUserLogin" type="default">
-    <view class="person_avatar"><image src="{{userInfo.headPortraitLink?userInfo.headPortraitLink:'/assets/avatar.svg'}}" mode="widthFix"></image></view>
-    <view class="person_name">{{userInfo.nickname?userInfo.nickname:'点击登录账户'}}</view>
-  </button>
+  <view style="background: #f2f2f2;padding: 20rpx 0 10rpx;">
+    <button class="login" wx:if="{{!is_auth}}" open-type="getPhoneNumber" bind:getphonenumber="getPhoneNumber" type="default" lang='zh_CN'>
+      <view class="person_avatar"><image src="{{userInfo.headPortraitLink?userInfo.headPortraitLink:'/assets/avatar.svg'}}" mode="widthFix"></image></view>
+      <view class="person_name">{{userInfo.nickname?userInfo.nickname:'点击登录账户'}}</view>
+    </button>
+    <button class="login" wx:else open-type="getUserInfo" bind:getuserinfo="getUserLogin" type="default">
+      <view class="person_avatar"><image src="{{userInfo.headPortraitLink?userInfo.headPortraitLink:'/assets/avatar.svg'}}" mode="widthFix"></image></view>
+      <view class="person_name">{{userInfo.nickname?userInfo.nickname:'点击登录账户'}}</view>
+    </button> 
+  </view>
+  <view class="nav_list_box">
+    <navigator url="/pages/myAgent/index" class="nav_item">我的下属 <image src="/assets/arrow.png"></image></navigator>
+    <navigator url="/pages/profitDetail/index" class="nav_item">趋势图 <image src="/assets/arrow.png"></image></navigator>
+  </view>
 </view>

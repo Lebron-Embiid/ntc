@@ -11,7 +11,7 @@ import {
   coupon_agent_profit_trend_chart,  //代理人趋势图
   coupon_seller_profit_trend_chart, //销售员收益趋势图
   coupon_seller_discount_trend_chart//销售员折让趋势图
-} from '../../api/user.js'
+} from '../../api/api.js'
 
 var Chart = null;
 Page({

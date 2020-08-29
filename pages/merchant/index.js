@@ -1,64 +1,23 @@
 // pages/merchant/index.js
 import {
-  
+  save_company_info,
+  get_company_info
 } from '../../api/api.js'
 import { base64src } from '../../utils/base64src.js'
 import publicFun from '../../utils/public.js'
 const uploadUrl = 'http://192.168.31.115:9091'
+// const uploadUrl = 'https://n.3p3.top'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    business_id: '',
-    name: '',
     person_name: '',
-    card: '',
     person_code: '',
     company_name: '',
-    head_pic1: '',
-    head_pic2: '',
-    head_pic3: '',
-    head_pic4: '',
-    head_pic5: '',
-    head_pic6: '',
-    head_pic7: '',
-    transport_pic1: '',
-    transport_pic2: '',
-    transport_pic3: '',
-    end_pic1: '',
-    end_pic2: '',
-    end_pic3: '',
-    end_pic4: '',
-    end_pic5: '',
-    end_pic6: '',
-    end_pic7: '',
-    end_pic8: '',
-    end_pic9: '',
-    end_pic10: '',
-    end_pic11: '',
-    is_head_pic1: 0,
-    is_head_pic2: 0,
-    is_head_pic3: 0,
-    is_head_pic4: 0,
-    is_head_pic5: 0,
-    is_head_pic6: 0,
-    is_head_pic7: 0,
-    is_transport_pic1: 0,
-    is_transport_pic2: 0,
-    is_transport_pic3: 0,
-    is_end_pic1: 0,
-    is_end_pic2: 0,
-    is_end_pic3: 0,
-    is_end_pic4: 0,
-    is_end_pic5: 0,
-    is_end_pic6: 0,
-    is_end_pic7: 0,
-    is_end_pic8: 0,
-    is_end_pic9: 0,
-    is_end_pic10: 0,
-    is_end_pic11: 0,
+    license: '',
+    is_license: 0,
     is_pass: 0
   },
 
@@ -69,6 +28,22 @@ Page({
     if(options.type){
       wx.setNavigationBarTitle({
         title: '修改资料'
+      })
+    }
+    
+    if(wx.getStorageSync('userInfo').companyId != null){
+      // 获取公司信息
+      get_company_info({
+        companyId: 'CI2008282430001102'
+      }).then((res)=>{
+        if(res.code == 200){
+          this.setData({
+            company_name: res.data.companyName,
+            person_name: res.data.legalPerson,
+            person_code: res.data.uscc,
+            uscc: res.data.licenseImg
+          })
+        }
       })
     }
   },
@@ -125,10 +100,7 @@ Page({
     queryBusinessInfo().then((res)=>{
       if(res.code == 200){
         this.setData({
-          business_id: res.data.businessId,
-          name: res.data.bossName,
           person_name: res.data.legalPerson,
-          card: res.data.idnumber,
           person_code: res.data.uscc,
           company_name: res.data.businessName,
           is_pass: 0
@@ -136,19 +108,9 @@ Page({
       }
     })
   },
-  getName(e){
-    this.setData({
-      name: e.detail.value
-    })
-  },
   getPersonName(e){
     this.setData({
       person_name: e.detail.value
-    })
-  },
-  getCard(e){
-    this.setData({
-      card: e.detail.value
     })
   },
   getPersonCode(e){
@@ -161,78 +123,12 @@ Page({
       company_name: e.detail.value
     })
   },
-  chooseHeadPic1(){
-    this.choosePic(this.data.head_pic1,this.data.is_head_pic1);
-  },
-  chooseHeadPic2(){
-    this.choosePic(this.data.head_pic2,this.data.is_head_pic2);
-  },
-  chooseHeadPic3(){
-    this.choosePic(this.data.head_pic3,this.data.is_head_pic3);
-  },
-  chooseHeadPic4(){
-    this.choosePic(this.data.head_pic4,this.data.is_head_pic4);
-  },
-  chooseHeadPic5(){
-    this.choosePic(this.data.head_pic5,this.data.is_head_pic5);
-  },
-  chooseHeadPic6(){
-    this.choosePic(this.data.head_pic6,this.data.is_head_pic6);
-  },
-  chooseHeadPic7(){
-    this.choosePic(this.data.head_pic7,this.data.is_head_pic7);
-  },
-  chooseTransportPic1(){
-    this.choosePic(this.data.transport_pic1,this.data.is_transport_pic1);
-  },
-  chooseTransportPic2(){
-    this.choosePic(this.data.transport_pic2,this.data.is_transport_pic2);
-  },
-  chooseTransportPic3(){
-    this.choosePic(this.data.transport_pic3,this.data.is_transport_pic3);
-  },
-  chooseEndPic1(){
-    this.choosePic(this.data.end_pic1,this.data.is_end_pic1);
-  },
-  chooseEndPic2(){
-    this.choosePic(this.data.end_pic2,this.data.is_end_pic2);
-  },
-  chooseEndPic3(){
-    this.choosePic(this.data.end_pic3,this.data.is_end_pic3);
-  },
-  chooseEndPic4(){
-    this.choosePic(this.data.end_pic4,this.data.is_end_pic4);
-  },
-  chooseEndPic5(){
-    this.choosePic(this.data.end_pic5,this.data.is_end_pic5);
-  },
-  chooseEndPic6(){
-    this.choosePic(this.data.end_pic6,this.data.is_end_pic6);
-  },
-  chooseEndPic7(){
-    this.choosePic(this.data.end_pic7,this.data.is_end_pic7);
-  },
-  chooseEndPic8(){
-    this.choosePic(this.data.end_pic8,this.data.is_end_pic8);
-  },
-  chooseEndPic9(){
-    this.choosePic(this.data.end_pic9,this.data.is_end_pic9);
-  },
-  chooseEndPic10(){
-    this.choosePic(this.data.end_pic10,this.data.is_end_pic10);
-  },
-  chooseEndPic11(){
-    this.choosePic(this.data.end_pic11,this.data.is_end_pic11);
-  },
-  
+  chooseLicense(){
+    this.choosePic('license','is_license');
+  },  
   choosePic(agrms1,agrms2){
     var that = this;
     publicFun.getImage(1,false,['album']).then((res)=>{
-      // uploadFile({
-      //   file: res[0]
-      // }).then((imgRes)=>{
-      //   console.log(imgRes)
-      // })
       wx.uploadFile({
         url: uploadUrl+'/applet/file/upload', //仅为示例，非真实的接口地址
         filePath: res[0],
@@ -244,14 +140,15 @@ Page({
           type: ''
         },
         success (imgRes){
-          // console.log('----ios1----'+JSON.stringify(imgRes))
+          console.log('----ios1----'+JSON.stringify(imgRes))
           // console.log('----ios2----'+JSON.stringify(imgRes.data))
           // console.log('----ios3----'+JSON.parse(imgRes.data).data)
           if(JSON.parse(imgRes.data).code == 200){
             let img_pic = JSON.parse(imgRes.data).data;
+            console.log(img_pic,[agrms1]);
             that.setData({
-              agrms1: img_pic,
-              agrms2: 1
+              [agrms1]: img_pic,
+              [agrms2]: 1
             })
           }else{
             wx.showModal({
@@ -301,37 +198,20 @@ Page({
       })
       return;
     }
-    if(this.data.back_img==''){
-      wx.showToast({
-        title: '请上传企业图片',
-        icon: 'none'
-      })
-      return;
-    }
-    console.log(this.data.business_id)
-    addMerchantInfo({
-      businessId: this.data.business_id,
-      businessName: this.data.company_name,//企业名称
+    save_company_info({
+      companyName: this.data.company_name,//企业名称
       legalPerson: this.data.person_name,//法人名称
       uscc: this.data.person_code,//统一社会信用代码
       licenseImg: this.data.license,//执照
-      businessImg: this.data.back_img,//企业图片
-      bossName: this.data.name,//老板名称
-      idnumber: this.data.card,//身份证
-      idnumberImg: this.data.card_img,//身份证图片
-      authorizeImg: this.data.book_img//授权图片
     }).then(res=>{
       if(res.code == 200){
-        if(this.data.business_id == ''){
-          this.setData({
-            name: '',
-            person_name: '',
-            card: '',
-            person_code: '',
-            company_name: '',
-            is_pass: 1
-          })
-        }
+        this.setData({
+          company_name: '',
+          person_name: '',
+          person_code: '',
+          license: ''
+          // is_pass: 1
+        })
         wx.showToast({
           title: '提交成功',
           icon: 'none'

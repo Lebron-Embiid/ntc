@@ -53,10 +53,7 @@ Page({
                               unionId: skres.data.openId
                             }).then(logRes => {
                               if(logRes.code == 200){
-                                wx.setStorage({
-                                  key: "token",
-                                  data: logRes.data.token
-                                })
+                                wx.setStorageSync('token', logRes.data.token);
                                 get_user_info().then((user_res)=>{
                                   if(user_res.code == 200){
                                     wx.setStorageSync('userInfo', logRes.data);

@@ -1,17 +1,16 @@
 // pages/myAgent/index.js
 import {
-  queryMemberList,
-  getBrowseCert,
-  applicationMemberList,
-  memberManage
-} from '../../api/user.js'
+  query_company_member,
+  add_company_member,
+  member_manage
+} from '../../api/api.js'
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    tab_list: ["申请人列表","我的代理人"],
+    tab_list: ["申请人员","在职人员"],
     activeIndex: 0,
     list: [],
     page: 1,
@@ -22,7 +21,106 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    this.getApply();
+    this.getMemberList();
+  },
+  getMemberList(){
+    let data = {
+      current: this.data.page,
+      size: 20,
+      status: this.data.activeIndex
+    }
+    query_company_member(data).then((res)=>{
+      if(res.code == 200){
+        if(this.data.page == 1){
+          this.setData({
+            list: res.data.records
+          })
+        }else{
+          this.setData({
+            list: this.data.list.concat(res.data.records)
+          })
+        }
+      }
+    })
+  },
+  clickNav(e){
+    this.setData({
+      activeIndex: e.currentTarget.dataset.index,
+      list: [],
+      page: 1
+    })
+    this.getMemberList();
+  },
+  clickAgree(e){
+    memberManage({
+      memberId: e.currentTarget.dataset.id,
+      status: '1',
+      type: 'agent'
+    }).then((res)=>{
+      if(res.code == 200){
+        wx.showToast({
+          title: '已通过',
+          icon: 'none'
+        })
+        let index = e.currentTarget.dataset.index;
+        this.data.list[index].status = '通过';
+        this.setData({
+          list: this.data.list
+        })
+        // this.getApply();
+      }
+    })
+  },
+  clickReject(e){
+    memberManage({
+      memberId: e.currentTarget.dataset.id,
+      status: '2',
+      type: 'agent'
+    }).then((res)=>{
+      if(res.code == 200){
+        wx.showToast({
+          title: '已拒绝',
+          icon: 'none'
+        })
+        let index = e.currentTarget.dataset.index;
+        this.data.list[index].status = '未通过';
+        this.setData({
+          list: this.data.list
+        })
+        // this.getApply();
+      }
+    })
+  },
+  clickDelete(e){
+    let that = this;
+    let index = e.currentTarget.dataset.index;
+    wx.showModal({
+      title: '提示',
+      content: '确认删除该成员?',
+      success (res){
+        if(res.confirm){
+          memberManage({
+            memberId: e.currentTarget.dataset.id,
+            status: '3',
+            type: 'agent'
+          }).then((res)=>{
+            if(res.code == 200){
+              wx.showToast({
+                title: '已删除',
+                icon: 'none'
+              })
+              that.data.list.splice(index,1);
+              that.setData({
+                list: that.data.list
+              })
+              // setTimeout(()=>{
+              //   that.getAgent();
+              // },1500)
+            }
+          })
+        }
+      }
+    })
   },
   getApply(){
     getBrowseCert({
@@ -38,7 +136,7 @@ Page({
         }).then(ress=>{
           if(ress.code == 200){
             this.setData({
-              list: this.data.list.concat(ress.data.records),
+              list: this.data.list.concat(ress.data.records)
             })
           }
         })
@@ -124,88 +222,5 @@ Page({
    */
   onShareAppMessage: function () {
 
-  },
-  clickNav(e){
-    this.setData({
-      activeIndex: e.currentTarget.dataset.index,
-      list: [],
-      page: 1
-    })
-    if(e.currentTarget.dataset.index == 0){
-      this.getApply();
-    }else{
-      this.getAgent();
-    }
-  },
-  clickAgree(e){
-    memberManage({
-      memberId: e.currentTarget.dataset.id,
-      status: '1',
-      type: 'agent'
-    }).then((res)=>{
-      if(res.code == 200){
-        wx.showToast({
-          title: '已通过',
-          icon: 'none'
-        })
-        let index = e.currentTarget.dataset.index;
-        this.data.list[index].status = '通过';
-        this.setData({
-          list: this.data.list
-        })
-        // this.getApply();
-      }
-    })
-  },
-  clickReject(e){
-    memberManage({
-      memberId: e.currentTarget.dataset.id,
-      status: '2',
-      type: 'agent'
-    }).then((res)=>{
-      if(res.code == 200){
-        wx.showToast({
-          title: '已拒绝',
-          icon: 'none'
-        })
-        let index = e.currentTarget.dataset.index;
-        this.data.list[index].status = '未通过';
-        this.setData({
-          list: this.data.list
-        })
-        // this.getApply();
-      }
-    })
-  },
-  clickDelete(e){
-    let that = this;
-    let index = e.currentTarget.dataset.index;
-    wx.showModal({
-      title: '提示',
-      content: '确认删除该成员?',
-      success (res){
-        if(res.confirm){
-          memberManage({
-            memberId: e.currentTarget.dataset.id,
-            status: '3',
-            type: 'agent'
-          }).then((res)=>{
-            if(res.code == 200){
-              wx.showToast({
-                title: '已删除',
-                icon: 'none'
-              })
-              that.data.list.splice(index,1);
-              that.setData({
-                list: that.data.list
-              })
-              // setTimeout(()=>{
-              //   that.getAgent();
-              // },1500)
-            }
-          })
-        }
-      }
-    })
   }
 })

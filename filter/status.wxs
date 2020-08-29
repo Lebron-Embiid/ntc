@@ -2,7 +2,7 @@
   filterStatus: function(status){
     var status_txt = '';
     if(status == '0'){
-      status_txt = '已邀请';
+      status_txt = '已申请';
     }else if(status == '1'){
       status_txt = '已同意';
     }else if(status == '2'){

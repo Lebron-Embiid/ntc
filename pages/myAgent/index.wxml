@@ -7,7 +7,7 @@
     <view class="content_item" wx:for="{{list}}" wx:key="index">
       <view class="head_left">
         <image src="{{item.headUrl}}" mode="widthFix"></image>
-        <view>{{item.memberName}}</view>
+        <view>{{item.nickname}}</view>
       </view>
       <view class="info_right">
         <view class="info_time">{{item.date}}</view>

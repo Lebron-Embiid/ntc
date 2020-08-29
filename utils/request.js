@@ -13,9 +13,8 @@ function getToken() {
 }
 
 //url地址
-// const requestUrl = 'https://maotaiapi.lcpower.cn';
-const requestUrl = 'http://192.168.31.115:9091';
-// const requestUrl = 'https://p.3p3.top';
+// const requestUrl = 'http://192.168.31.115:9091';
+const requestUrl = 'https://n.3p3.top';
 
 /*
 method 方法

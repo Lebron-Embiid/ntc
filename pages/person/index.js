@@ -16,7 +16,7 @@ Page({
     encryptedData: ''
   },
   onLoad: function () {
-
+    console.log(wx.getStorageSync('userInfo'))
   },
   onShow(){
     if(wx.getStorageSync('userInfo')){
@@ -61,10 +61,7 @@ Page({
                               unionId: skres.data.openId
                             }).then(logRes => {
                               if(logRes.code == 200){
-                                wx.setStorage({
-                                  key: "token",
-                                  data: logRes.data.token
-                                })
+                                wx.setStorageSync('token', logRes.data.token);
                                 get_user_info().then((user_res)=>{
                                   if(user_res.code == 200){
                                     wx.setStorageSync('userInfo', user_res.data);

@@ -7,24 +7,14 @@
       <view class="form_content"><input placeholder="请输入泥票名称" value="{{coupon_name}}" bindinput="getCouponName"></input></view>
     </view>
     <view class="form_item">
-      <text class="form_txt">泥票售价</text>
+      <text class="form_txt">泥票价格</text>
       <view class="form_content"><input placeholder="请输入泥票价格" type="number" value="{{price}}" bindinput="getPrice"></input></view>
     </view>
     <view class="form_item">
-      <text class="form_txt">泥票面额</text>
-      <view class="form_content"><input placeholder="请输入泥票面额" type="number" value="{{face}}" bindinput="getFace"></input></view>
+      <text class="form_txt">装车所在地址</text>
+      <view class="form_content"><input placeholder="请输入装车所在地址" type="text" value="{{address}}" bindinput="getAddress"></input></view>
     </view>
-    <view class="form_item">
-      <text class="form_txt">泥票有效时间</text>
-      <view class="form_content">
-        <picker mode="date" value="{{date}}" bindchange="bindDateChange">
-          <view class="picker">
-            {{date_txt}}
-          </view>
-        </picker>
-      </view>
-    </view>
-    <view class="form_item">
+    <!-- <view class="form_item">
       <text class="form_txt">泥票有效次数</text>
       <view class="form_content"><input placeholder="请输入泥票有效次数" type="number" value="{{count}}" bindinput="getCount"></input></view>
     </view>
@@ -35,7 +25,239 @@
     <view class="form_item">
       <text class="form_txt">促销券使用频率（小时）</text>
       <view class="form_content"><input placeholder="请输入促销券使用频率" type="number" value="{{frequence}}" bindinput="getFrequence"></input></view>
+    </view> -->
+    <view class="form_item">
+      <text class="form_txt">泥票有效时间</text>
+      <view class="form_content">
+        <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+          <view class="picker">
+            {{date_txt}}
+          </view>
+        </picker>
+      </view>
     </view>
+    <!-- <view class="form_item">
+      <text class="form_txt">装车所在地址</text>
+      <view class="form_content">
+        <picker mode="region" value="{{region}}" bindchange="bindRegionChange">
+          <view class="picker">
+            {{region_txt}}
+          </view>
+        </picker>
+      </view>
+    </view> -->
+    
+    <view class="form_item">
+      <text class="form_txt">图片编号</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseImage1">
+          <text wx:if="{{is_image1 == 0}}">+</text>
+          <image wx:else src="{{image1}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    
+    <!-- 泥头开工所需手续 -->
+    <view class="form_item">
+      <text class="form_txt">中标通知书</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseHeadPic1">
+          <text wx:if="{{is_head_pic1 == 0}}">+</text>
+          <image wx:else src="{{head_pic1}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">开工许可证</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseHeadPic2">
+          <text wx:if="{{is_head_pic2 == 0}}">+</text>
+          <image wx:else src="{{head_pic2}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">进场通知书</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseHeadPic3">
+          <text wx:if="{{is_head_pic3 == 0}}">+</text>
+          <image wx:else src="{{head_pic3}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">运输路线报批</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseHeadPic4">
+          <text wx:if="{{is_head_pic4 == 0}}">+</text>
+          <image wx:else src="{{head_pic4}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">管理人员报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseHeadPic5">
+          <text wx:if="{{is_head_pic5 == 0}}">+</text>
+          <image wx:else src="{{head_pic5}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+
+    <!-- 组建深圳泥头车公司要求 -->
+    <!-- <view class="form_item">
+      <text class="form_txt">营业执照</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseHeadPic6">
+          <text wx:if="{{is_head_pic6 == 0}}">+</text>
+          <image wx:else src="{{head_pic6}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">泥头车运输达标许可证</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseHeadPic7">
+          <text wx:if="{{is_head_pic7 == 0}}">+</text>
+          <image wx:else src="{{head_pic7}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view> -->
+    
+    <!-- 运输车辆 -->
+    <!-- <view class="form_item">
+      <text class="form_txt">驾驶驾驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseTransportPic1">
+          <text wx:if="{{is_transport_pic1 == 0}}">+</text>
+          <image wx:else src="{{transport_pic1}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">驾驶上岗证</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseTransportPic2">
+          <text wx:if="{{is_transport_pic2 == 0}}">+</text>
+          <image wx:else src="{{transport_pic2}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">开工车辆行驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseTransportPic3">
+          <text wx:if="{{is_transport_pic3 == 0}}">+</text>
+          <image wx:else src="{{transport_pic3}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view> -->
+
+    <!-- 泥尾：码头弃土点 -->
+    <!-- <view class="form_item">
+      <text class="form_txt">码头装缷许可证</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic1">
+          <text wx:if="{{is_end_pic1 == 0}}">+</text>
+          <image wx:else src="{{end_pic1}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">进港土方报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic2">
+          <text wx:if="{{is_end_pic2 == 0}}">+</text>
+          <image wx:else src="{{end_pic2}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">码头进港驾驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic3">
+          <text wx:if="{{is_end_pic3 == 0}}">+</text>
+          <image wx:else src="{{end_pic3}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">码头进港车辆行驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic4">
+          <text wx:if="{{is_end_pic4 == 0}}">+</text>
+          <image wx:else src="{{end_pic4}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view> -->
+
+    <!-- 泥尾：受纳场 -->
+    <!-- <view class="form_item">
+      <text class="form_txt">受纳场许可证</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic5">
+          <text wx:if="{{is_end_pic5 == 0}}">+</text>
+          <image wx:else src="{{end_pic5}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">进场土方报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic6">
+          <text wx:if="{{is_end_pic6 == 0}}">+</text>
+          <image wx:else src="{{end_pic6}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">进场驾驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic7">
+          <text wx:if="{{is_end_pic7 == 0}}">+</text>
+          <image wx:else src="{{end_pic7}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">进场车辆行驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic8">
+          <text wx:if="{{is_end_pic8 == 0}}">+</text>
+          <image wx:else src="{{end_pic8}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view> -->
+
+    <!-- 泥尾：施工用土 -->
+    <!-- <view class="form_item">
+      <text class="form_txt">进工地土方报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic9">
+          <text wx:if="{{is_end_pic9 == 0}}">+</text>
+          <image wx:else src="{{end_pic9}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">进工地驾驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic10">
+          <text wx:if="{{is_end_pic10 == 0}}">+</text>
+          <image wx:else src="{{end_pic10}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">进场工地车辆行驶证报备</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseEndPic11">
+          <text wx:if="{{is_end_pic11 == 0}}">+</text>
+          <image wx:else src="{{end_pic11}}" mode="aspectFit"></image>
+        </view>
+      </view>
+    </view> -->
+
     <view class="btn_box">
       <button size="mini" bindtap="save" class="left" type="primary">保存</button>
       <button size="mini" form-type="submit" type="primary">发行</button>
