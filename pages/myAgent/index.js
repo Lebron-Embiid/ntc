@@ -1,7 +1,6 @@
 // pages/myAgent/index.js
 import {
   query_company_member,
-  add_company_member,
   member_manage
 } from '../../api/api.js'
 Page({
@@ -52,10 +51,9 @@ Page({
     this.getMemberList();
   },
   clickAgree(e){
-    memberManage({
-      memberId: e.currentTarget.dataset.id,
-      status: '1',
-      type: 'agent'
+    member_manage({
+      userId: e.currentTarget.dataset.id,
+      status: '1'
     }).then((res)=>{
       if(res.code == 200){
         wx.showToast({
@@ -72,10 +70,9 @@ Page({
     })
   },
   clickReject(e){
-    memberManage({
-      memberId: e.currentTarget.dataset.id,
-      status: '2',
-      type: 'agent'
+    member_manage({
+      userId: e.currentTarget.dataset.id,
+      status: '2'
     }).then((res)=>{
       if(res.code == 200){
         wx.showToast({
@@ -99,10 +96,9 @@ Page({
       content: '确认删除该成员?',
       success (res){
         if(res.confirm){
-          memberManage({
-            memberId: e.currentTarget.dataset.id,
-            status: '3',
-            type: 'agent'
+          member_manage({
+            userId: e.currentTarget.dataset.id,
+            status: '3'
           }).then((res)=>{
             if(res.code == 200){
               wx.showToast({

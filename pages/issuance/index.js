@@ -13,9 +13,11 @@ Page({
    */
   data: {
     id: '', //促销券id
-    type: '',
+    type: '',  //泥头票：0  泥尾票：1
+    mud_name: '', //泥场名称
     coupon_name: '',
     price: '',
+    car_num: '',
     address: '',
     count: '',
     date: '',
@@ -76,17 +78,12 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    if(options.id){
-      this.setData({
-        id: options.id
-      })
-    }
     if(options.type){
       this.setData({
         type: options.type
       })
     }
-    console.log(options.id, options.type)
+    console.log(options.type)
     this.getEditFinish();
   },
 
@@ -172,9 +169,19 @@ Page({
   onShareAppMessage: function () {
 
   },
+  getMudName(e){
+    this.setData({
+      mud_name: e.detail.value
+    })
+  },
   getCouponName(e){
     this.setData({
       coupon_name: e.detail.value
+    })
+  },
+  getCarNum(e){
+    this.setData({
+      car_num: e.detail.value
     })
   },
   getPrice(e){

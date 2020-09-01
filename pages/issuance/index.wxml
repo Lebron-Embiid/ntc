@@ -3,12 +3,30 @@
   <form bindsubmit="submitForm">
     <view class="title">泥票发行区</view>
     <view class="form_item">
+      <text class="form_txt">泥场名称</text>
+      <view class="form_content"><input placeholder="请输入泥场名称" maxlength="4" value="{{mud_name}}" bindinput="getMudName"></input></view>
+    </view>
+    <view class="form_item">
       <text class="form_txt">泥票名称</text>
       <view class="form_content"><input placeholder="请输入泥票名称" value="{{coupon_name}}" bindinput="getCouponName"></input></view>
     </view>
     <view class="form_item">
-      <text class="form_txt">泥票价格</text>
-      <view class="form_content"><input placeholder="请输入泥票价格" type="number" value="{{price}}" bindinput="getPrice"></input></view>
+      <text class="form_txt">泥头车次</text>
+      <view class="form_content"><input placeholder="请输入泥头车次" type="number" value="{{car_num}}" bindinput="getCarNum"></input></view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">泥票有效时间</text>
+      <view class="form_content">
+        <picker mode="date" value="{{date}}" bindchange="bindDateChange">
+          <view class="picker">
+            {{date_txt}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">车次单价</text>
+      <view class="form_content"><input placeholder="请输入车次单价" type="number" value="{{price}}" bindinput="getPrice"></input></view>
     </view>
     <view class="form_item">
       <text class="form_txt">装车所在地址</text>
@@ -26,16 +44,6 @@
       <text class="form_txt">促销券使用频率（小时）</text>
       <view class="form_content"><input placeholder="请输入促销券使用频率" type="number" value="{{frequence}}" bindinput="getFrequence"></input></view>
     </view> -->
-    <view class="form_item">
-      <text class="form_txt">泥票有效时间</text>
-      <view class="form_content">
-        <picker mode="date" value="{{date}}" bindchange="bindDateChange">
-          <view class="picker">
-            {{date_txt}}
-          </view>
-        </picker>
-      </view>
-    </view>
     <!-- <view class="form_item">
       <text class="form_txt">装车所在地址</text>
       <view class="form_content">

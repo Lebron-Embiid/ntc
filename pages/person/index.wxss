@@ -22,21 +22,3 @@
 .button-hover{
   background: none !important;
 }
-.nav_list_box{
-  margin-top: 50rpx;
-}
-.nav_item{
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20rpx 30rpx;
-  border-bottom: 1px solid #f1f1f1;
-  box-sizing: border-box;
-  color: #333333;
-  font-size: 32rpx;
-}
-.nav_item image{
-  display: block;
-  width: 36rpx;
-  height: 36rpx;
-}

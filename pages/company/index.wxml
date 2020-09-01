@@ -7,10 +7,25 @@
       <text>{{item.title}}</text>
     </view>
   </view>
-  <view class="company_box">
-    <view class="company_item" wx:for="{{navList}}" data-index="{{index}}" wx:key="index" bindtap="clickNav">
-      <view><image src="{{item.icon}}"></image></view>
-      <text>{{item.title}}</text>
+  <scroll-view class="scroll-view_H" scroll-y="true">
+    <view class="nav_list_box">
+      <!-- 泥场 -->
+      <view class="nav_item" bindtap="clickNavList" data-index="{{index}}" wx:for="{{navList}}" wx:key="index">
+        {{item.title}} <image src="/assets/arrow.png"></image>
+      </view>
     </view>
-  </view>
+  </scroll-view>
+  <!-- <view class="identity_icon">
+    <picker mode="multiSelector" bindchange="selectChange">
+      <image src="/assets/identity.svg"></image>
+    </picker>
+  </view> -->
+
+    <!-- 发泥票  看泥票  泥票交易  成员管理  运输信息  扫码验票  验票记录 -->
+    <!-- <view class="company_box">
+      <view class="company_item" wx:for="{{navList}}" data-index="{{index}}" wx:key="index" bindtap="clickNav">
+        <view><image src="{{item.icon}}"></image></view>
+        <text>{{item.title}}</text>
+      </view>
+    </view> -->
 </view>

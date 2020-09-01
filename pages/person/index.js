@@ -94,10 +94,24 @@ Page({
     })
   },
   getPhoneNumber (e) {
-    this.setData({
-      iv: e.detail.iv,
-      encryptedData:e.detail.encryptedData,
-      is_auth: true
+    wx.getNetworkType({
+      success (res) {
+        console.log(res.networkType);
+        if(res.networkType == 'unknown' || res.networkType == 'none'){
+          wx.showToast({
+            title: '请检查网络状态',
+            icon: 'none'
+          })
+          return;
+        }
+      }
     })
+    if(e.detail.iv != undefined){
+      this.setData({
+        iv: e.detail.iv,
+        encryptedData:e.detail.encryptedData,
+        is_auth: true
+      })
+    }
   }
 })

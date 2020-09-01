@@ -79,6 +79,14 @@ export function query_company_member(data) {
     data
   })
 }
+//公司列表
+export function query_company_manage_list(data) {
+  return request({
+    url: "/applet/user/query_company_manage_list",
+    method: "POST",
+    data
+  })
+}
 
 //新增泥头票
 export function save_mud_head(data) {

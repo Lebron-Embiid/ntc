@@ -6,6 +6,7 @@
     "pages/profitDetail/index",
     "pages/company/index",
     "pages/issuance/index",
+    "pages/mudRegister/index",
     "pages/search/index",
     "pages/person/index",
     "pages/merchant/index",

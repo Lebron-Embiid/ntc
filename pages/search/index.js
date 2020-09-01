@@ -1,7 +1,8 @@
 // pages/search/index.js
 import {
   search_company,
-  add_company_member
+  add_company_member,
+  query_company_manage_list
 } from '../../api/api.js'
 Page({
 
@@ -18,6 +19,13 @@ Page({
    */
   onLoad: function (options) {
     this.getSearchList();
+
+    // query_company_manage_list({
+    //   pageNum: 1,
+    //   pageSize: 10
+    // }).then((res)=>{
+
+    // })
   },
 
   /**
