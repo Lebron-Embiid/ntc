@@ -16,6 +16,7 @@ Page({
     encryptedData: ''
   },
   onLoad: function () {
+    console.log(wx.getStorageSync('token'))
     console.log(wx.getStorageSync('userInfo'))
   },
   onShow(){

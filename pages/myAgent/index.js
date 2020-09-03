@@ -12,8 +12,7 @@ Page({
     tab_list: ["申请人员","在职人员"],
     activeIndex: 0,
     list: [],
-    page: 1,
-    totalPage: 1
+    page: 1
   },
 
   /**
@@ -154,21 +153,17 @@ Page({
   },
   loadMore(e){
     if(this.data.activeIndex == 0){
-      if(this.data.page<this.data.totalPage){
-        this.data.page++;
-        this.setData({
-          page: this.data.page
-        })
-        this.getApply();
-      }
+      this.data.page++;
+      this.setData({
+        page: this.data.page
+      })
+      this.getApply();
     }else{
-      if(this.data.page<this.data.totalPage){
-        this.data.page++;
-        this.setData({
-          page: this.data.page
-        })
-        this.getAgent();
-      }
+      this.data.page++;
+      this.setData({
+        page: this.data.page
+      })
+      this.getAgent();
     }
   },
   /**

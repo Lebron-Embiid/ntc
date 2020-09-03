@@ -31,11 +31,66 @@ export function uploadFile(data) {
   })
 }
 
+//用户类型基础数据
+export function query_user_type() {
+  return request({
+    url: "/applet/user/query_user_type",
+    method: "GET"
+  })
+}
 //注册公司
 export function save_company_info(data) {
   return request({
     url: "/applet/user/save_company_info",
     method: "POST",
+    data
+  })
+}
+//泥头场认证
+export function save_mud_yard_head_info(data) {
+  return request({
+    url: "/applet/user/save_mud_yard_head_info",
+    method: "POST",
+    data
+  })
+}
+//泥尾场认证
+export function save_mud_yard_tail_info(data) {
+  return request({
+    url: "/applet/user/save_mud_yard_tail_info",
+    method: "POST",
+    data
+  })
+}
+//获取泥头场信息
+export function get_mud_yard_head_info(data) {
+  return request({
+    url: "/applet/user/get_mud_yard_head_info",
+    method: "GET",
+    data
+  })
+}
+//获取泥尾场信息
+export function get_mud_yard_tail_info(data) {
+  return request({
+    url: "/applet/user/get_mud_yard_tail_info",
+    method: "GET",
+    data
+  })
+}
+//查询我的泥头场表列
+export function query_mud_yard_head(data) {
+  return request({
+    url: "/applet/user/query_mud_yard_head",
+    method: "GET",
+    data
+  })
+}
+//查询我的泥尾场表列
+export function query_mud_yard_tail(data) {
+  return request({
+    url: "/applet/user/query_mud_yard_tail",
+    method: "GET",
     data
   })
 }
@@ -88,18 +143,10 @@ export function query_company_manage_list(data) {
   })
 }
 
-//新增泥头票
-export function save_mud_head(data) {
+//新增泥票
+export function save_mud_ticket(data) {
   return request({
-    url: "/applet/mud/save_mud_head",
-    method: "POST",
-    data
-  })
-}
-//新增泥尾票
-export function save_mud_tail(data) {
-  return request({
-    url: "/applet/mud/save_mud_tail",
+    url: "/applet/mud/save_mud_ticket",
     method: "POST",
     data
   })

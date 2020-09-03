@@ -4,9 +4,9 @@
     if(status == '0'){
       status_txt = '已申请';
     }else if(status == '1'){
-      status_txt = '已同意';
+      status_txt = '已通过';
     }else if(status == '2'){
-      status_txt = '已拒绝';
+      status_txt = '未通过';
     }
     return status_txt;
   }

@@ -67,3 +67,9 @@
   text-align: center;
   padding: 50rpx 0;
 }
+.btn_box{
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  padding-top: 50rpx;
+}

@@ -1,6 +1,7 @@
 {
   "pages":[
     "pages/market/index",
+    "pages/mudList/index",
     "pages/ticket/index",
     "pages/myAgent/index",
     "pages/profitDetail/index",

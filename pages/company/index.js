@@ -132,8 +132,13 @@ Page({
     console.log(index);
     if(this.data.identity == ''){
       if(index == 0){
-        wx.navigateTo({
-          url: '/pages/mudRegister/index'
+        wx.showActionSheet({
+          itemList: ["泥头场","泥尾场"],
+          success: (res)=>{
+            wx.navigateTo({
+              url: '/pages/mudRegister/index?type=mud&is_mud='+res.tapIndex
+            })
+          }
         })
       }else if(index == 2){
         wx.showActionSheet({

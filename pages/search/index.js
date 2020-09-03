@@ -1,5 +1,6 @@
 // pages/search/index.js
 import {
+  query_user_type,
   search_company,
   add_company_member,
   query_company_manage_list
@@ -19,7 +20,9 @@ Page({
    */
   onLoad: function (options) {
     this.getSearchList();
+    query_user_type().then((res)=>{
 
+    })
     // query_company_manage_list({
     //   pageNum: 1,
     //   pageSize: 10
@@ -65,20 +68,42 @@ Page({
     let com_idx = e.currentTarget.dataset.index;
     console.log(com_idx);
     var that = this;
+    var lists = [];
+    console.log(this.data.searchList[com_idx])
+    if(this.data.searchList[com_idx].type == 'mud'){
+      lists = ['泥场总经理', '泥场经理', '泥场员工', '泥场出纳'];
+    }else{
+      lists = ['运输队经理', '运输队司机', '运输队出纳'];
+    }
     wx.showActionSheet({
-      itemList: ['经理', '员工', '驾驶员'],
+      itemList: lists,
       success (res) {
-        console.log(res.tapIndex);
-        var type = 0;
-        if(res.tapIndex == 0){
-          // 申请经理
-          type = 2;
-        }else if(res.tapIndex == 1){
-          // 申请员工
-          type = 3;
+        var type = '';
+        if(that.data.searchList[com_idx].type == 'mud'){
+          if(res.tapIndex == 0){
+            // 申请泥场总经理
+            type = 'mg';
+          }else if(res.tapIndex == 1){
+            // 申请泥场经理
+            type = 'mm';
+          }else if(res.tapIndex == 2){
+            // 申请泥场员工
+            type = 'ms';
+          }else{
+            // 申请泥场出纳
+            type = 'mt';
+          }
         }else{
-          // 申请驾驶员
-          type = 4;
+          if(res.tapIndex == 0){
+            // 申请运输队经理
+            type = 'tm';
+          }else if(res.tapIndex == 1){
+            // 申请运输队司机
+            type = 'td';
+          }else{
+            // 申请运输队出纳
+            type = 'tt';
+          }
         }
         add_company_member({
           companyId: com_id,

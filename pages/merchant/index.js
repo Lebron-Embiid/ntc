@@ -13,6 +13,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    type: 'mud',
     person_name: '',
     person_code: '',
     company_name: '',
@@ -95,6 +96,11 @@ Page({
    */
   onShareAppMessage: function () {
 
+  },
+  selectType(e){
+    this.setData({
+      type: e.detail.value
+    })
   },
   getBusinessInfo(){
     queryBusinessInfo().then((res)=>{
@@ -203,13 +209,15 @@ Page({
       legalPerson: this.data.person_name,//法人名称
       uscc: this.data.person_code,//统一社会信用代码
       licenseImg: this.data.license,//执照
+      type: this.data.type
     }).then(res=>{
       if(res.code == 200){
         this.setData({
           company_name: '',
           person_name: '',
           person_code: '',
-          license: ''
+          license: '',
+          is_license: 0
           // is_pass: 1
         })
         wx.showToast({

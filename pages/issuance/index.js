@@ -1,7 +1,6 @@
 // pages/editCoupon/index.js
 import {
-  save_mud_head,
-  save_mud_tail
+  save_mud_ticket
 } from '../../api/api.js'
 import publicFun from '../../utils/public.js'
 const uploadUrl = 'http://192.168.31.115:9091'
@@ -14,7 +13,7 @@ Page({
   data: {
     id: '', //促销券id
     type: '',  //泥头票：0  泥尾票：1
-    mud_name: '', //泥场名称
+    company_name: '', //泥场名称
     coupon_name: '',
     price: '',
     car_num: '',
@@ -79,8 +78,14 @@ Page({
    */
   onLoad: function (options) {
     if(options.type){
+      let type = '';
+      if(options.type == 0){
+        type = 'head';
+      }else{
+        type = 'tail';
+      }
       this.setData({
-        type: options.type
+        type: type
       })
     }
     console.log(options.type)
@@ -169,9 +174,9 @@ Page({
   onShareAppMessage: function () {
 
   },
-  getMudName(e){
+  getCompanyName(e){
     this.setData({
-      mud_name: e.detail.value
+      company_name: e.detail.value
     })
   },
   getCouponName(e){
@@ -324,8 +329,7 @@ Page({
       })
     })
   },
-  
-  save(){
+  submitData(status){
     // if(this.data.price == ''){
     //   publicFun.getToast('请输入促销券价格');
     //   return;
@@ -347,29 +351,25 @@ Page({
     //   return;
     // }
     let data = {
-      companyId: '1',
-      companyName: '1',
-      startDate: this.data.date,
-      itemName: this.data.coupon_name,
-      address: this.data.address,
-      area: '1',
+      companyName: this.data.company_name,
+      ticketName: this.data.coupon_name,
+      count: this.data.car_num,
       imageNum: this.data.image1,
       price: this.data.price,
-      sign: '1',
-      permit1: this.data.head_pic1,
-      permit2: this.data.head_pic2,
-      permit3: this.data.head_pic3,
-      permit4: this.data.head_pic4,
-      permit5: this.data.head_pic5,
-      status: '0'
+      startDate: this.data.date,
+      type: this.data.type,
+      status: status
     }
-    save_mud_head(data).then((res)=>{
+    save_mud_ticket(data).then((res)=>{
       if(res.code == 200){
         
       }
     })
   },
-  submitForm(e){
-    
+  save(){
+    this.submitData(0);
+  },
+  submit(e){
+    this.submitData(1);
   }
 })

@@ -11,6 +11,7 @@
     </button> 
   </view>
   <view class="nav_list_box">
+    <navigator url="/pages/mudList/index" class="nav_item">我的泥场 <image src="/assets/arrow.png"></image></navigator>
     <navigator url="/pages/myAgent/index" class="nav_item">我的下属 <image src="/assets/arrow.png"></image></navigator>
     <navigator url="/pages/profitDetail/index" class="nav_item">趋势图 <image src="/assets/arrow.png"></image></navigator>
   </view>

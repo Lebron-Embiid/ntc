@@ -1,10 +1,10 @@
 <!--pages/editCoupon/index.wxml-->
 <view class="form_box">
-  <form bindsubmit="submitForm">
+  <form>
     <view class="title">泥票发行区</view>
     <view class="form_item">
-      <text class="form_txt">泥场名称</text>
-      <view class="form_content"><input placeholder="请输入泥场名称" maxlength="4" value="{{mud_name}}" bindinput="getMudName"></input></view>
+      <text class="form_txt">发布公司名称</text>
+      <view class="form_content"><input placeholder="请输入发布公司名称" value="{{company_name}}" bindinput="getCompanyName"></input></view>
     </view>
     <view class="form_item">
       <text class="form_txt">泥票名称</text>
@@ -28,10 +28,10 @@
       <text class="form_txt">车次单价</text>
       <view class="form_content"><input placeholder="请输入车次单价" type="number" value="{{price}}" bindinput="getPrice"></input></view>
     </view>
-    <view class="form_item">
+    <!-- <view class="form_item">
       <text class="form_txt">装车所在地址</text>
       <view class="form_content"><input placeholder="请输入装车所在地址" type="text" value="{{address}}" bindinput="getAddress"></input></view>
-    </view>
+    </view> -->
     <!-- <view class="form_item">
       <text class="form_txt">泥票有效次数</text>
       <view class="form_content"><input placeholder="请输入泥票有效次数" type="number" value="{{count}}" bindinput="getCount"></input></view>
@@ -66,7 +66,7 @@
     </view>
     
     <!-- 泥头开工所需手续 -->
-    <view class="form_item">
+    <!-- <view class="form_item">
       <text class="form_txt">中标通知书</text>
       <view class="form_content noborder">
         <view class="add_box" bindtap="chooseHeadPic1">
@@ -110,7 +110,7 @@
           <image wx:else src="{{head_pic5}}" mode="aspectFit"></image>
         </view>
       </view>
-    </view>
+    </view> -->
 
     <!-- 组建深圳泥头车公司要求 -->
     <!-- <view class="form_item">
@@ -268,7 +268,7 @@
 
     <view class="btn_box">
       <button size="mini" bindtap="save" class="left" type="primary">保存</button>
-      <button size="mini" form-type="submit" type="primary">发行</button>
+      <button size="mini" bindtap="submit" type="primary">发行</button>
     </view>
   </form>
 </view>

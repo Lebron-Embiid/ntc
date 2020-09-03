@@ -67,3 +67,19 @@
   text-align: center;
   padding: 50rpx 0;
 }
+
+.radio_box{
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin-top: 10rpx;
+}
+.radio_box label{
+  font-size: 24rpx;
+  display: flex;
+  align-items: center;
+  margin-right: 50rpx;
+}
+.radio_box radio{
+  transform: scale(0.7);
+}
