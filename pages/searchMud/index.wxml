@@ -1,0 +1,12 @@
+<!--pages/searchMud/index.wxml-->
+<view>
+  <view class="nav_tab_box">
+    <view class="nav_item {{activeIndex==index?'active':''}}" bindtap="clickNav" data-index="{{index}}" wx:for="{{tab_list}}" wx:key="index">{{item}}</view>
+  </view>
+  <view class="nav_content_view">
+    <view class="nav_view_item" wx:for="{{list}}" wx:key="index">
+      <view>{{item.yard_name}}</view>
+      <button type="primary" size="mini" data-id="{{item.yard_id}}" bindtap="toSearch">查看</button>
+    </view>
+  </view>
+</view>

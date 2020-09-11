@@ -1,7 +1,7 @@
 <!--pages/company/index.wxml-->
 <view class="company_body">
   <image src="/assets/back.jpg" class="bg_pic"></image>
-  <view class="company_box">
+  <view class="company_box" wx:if="{{!is_change}}">
     <view class="company_item" wx:for="{{companyList}}" data-index="{{index}}" wx:key="index" bindtap="clickCompany">
       <view><image src="{{item.icon}}"></image></view>
       <text>{{item.title}}</text>
@@ -15,11 +15,11 @@
       </view>
     </view>
   </scroll-view>
-  <!-- <view class="identity_icon">
-    <picker mode="multiSelector" bindchange="selectChange">
+  <view class="identity_icon" wx:if="{{is_change}}">
+    <picker mode="selector" range-key="value" range="{{identityList}}" bindchange="selectChange">
       <image src="/assets/identity.svg"></image>
     </picker>
-  </view> -->
+  </view>
 
     <!-- 发泥票  看泥票  泥票交易  成员管理  运输信息  扫码验票  验票记录 -->
     <!-- <view class="company_box">

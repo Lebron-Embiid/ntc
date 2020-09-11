@@ -1,0 +1,5 @@
+/* pages/mudTicketDetail/index.wxss */
+.ticket_img{
+  display: block;
+  width: 100%;
+}

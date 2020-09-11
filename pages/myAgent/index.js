@@ -51,7 +51,7 @@ Page({
   },
   clickAgree(e){
     member_manage({
-      userId: e.currentTarget.dataset.id,
+      memberId: e.currentTarget.dataset.id,
       status: '1'
     }).then((res)=>{
       if(res.code == 200){
@@ -64,13 +64,13 @@ Page({
         this.setData({
           list: this.data.list
         })
-        // this.getApply();
+        this.getMemberList();
       }
     })
   },
   clickReject(e){
     member_manage({
-      userId: e.currentTarget.dataset.id,
+      memberId: e.currentTarget.dataset.id,
       status: '2'
     }).then((res)=>{
       if(res.code == 200){
@@ -83,7 +83,7 @@ Page({
         this.setData({
           list: this.data.list
         })
-        // this.getApply();
+        this.getMemberList();
       }
     })
   },
@@ -96,7 +96,7 @@ Page({
       success (res){
         if(res.confirm){
           member_manage({
-            userId: e.currentTarget.dataset.id,
+            memberId: e.currentTarget.dataset.id,
             status: '3'
           }).then((res)=>{
             if(res.code == 200){

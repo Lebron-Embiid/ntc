@@ -1,6 +1,11 @@
 {
   "pages":[
     "pages/market/index",
+    "pages/records/index",
+    "pages/searchMud/index",
+    "pages/mudTicketDetail/index",
+    "pages/buyMudList/index",
+    "pages/mudTicket/index",
     "pages/mudList/index",
     "pages/ticket/index",
     "pages/myAgent/index",

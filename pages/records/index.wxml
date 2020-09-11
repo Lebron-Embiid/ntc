@@ -1,0 +1,9 @@
+<!--pages/records/index.wxml-->
+<view>
+  <view class="records_box">
+    <view class="records_item" wx:for="{{list}}" wx:key="index">
+      <view>{{item.ticketName}}</view>
+      <text>{{item.date}}</text>
+    </view>
+  </view>
+</view>

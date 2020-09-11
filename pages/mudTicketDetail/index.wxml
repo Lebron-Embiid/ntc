@@ -1,0 +1,4 @@
+<!--pages/mudTicketDetail/index.wxml-->
+<view>
+  <image class="ticket_img" src="{{ticket_img}}" bindlongpress="downloadImg" mode="widthFix" lazy-load="true"></image>
+</view>

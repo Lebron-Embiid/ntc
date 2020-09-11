@@ -242,6 +242,8 @@ Page({
   },
   initData(){
     this.setData({
+      mud_name: '',
+      mud_address: '',
       mud_pic1: '',
       mud_pic2: '',
       mud_pic3: '',

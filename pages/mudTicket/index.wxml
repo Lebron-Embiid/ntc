@@ -1,0 +1,16 @@
+<!--pages/mudTicket/index.wxml-->
+<view>
+  <scroll-view bindscrolltolower="getListMore" scroll-x="true" class="scroll_content">
+    <view class="scroll_item" wx:for="{{scrollList}}" wx:key="index" data-id="{{item.ticketId}}" data-aid="{{item.agentId}}" data-index="{{index}}" bindtap="toTicketDetail">
+      <view class="txt">{{item.ticketName}}</view>
+      <image src="{{item.imageNum}}" mode="widthFix"></image>
+    </view>
+  </scroll-view>
+
+  <view class="again_shadow" wx:if="{{is_show}}" bindtap="changeShow"></view>
+  <view class="again_pop" wx:if="{{is_show}}">
+    <view>车次：<input type="number" value="{{count}}" bindinput="changeCount" placeholder="请输入车次"></input></view>
+    <view>价格：<input type="number" value="{{price}}" bindinput="changePrice" placeholder="请输入价格"></input></view>
+    <button type="primary" size="mini" bindtap="toAgainBtn">发行</button>
+  </view>
+</view>

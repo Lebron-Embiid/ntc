@@ -1,0 +1,10 @@
+/* pages/searchMud/index.wxss */
+.nav_view_item{
+  padding: 20rpx 30rpx;
+  box-sizing: border-box;
+  border-bottom: 1px solid #f1f1f1;
+  font-size: 28rpx;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

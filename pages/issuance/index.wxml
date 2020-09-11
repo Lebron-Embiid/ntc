@@ -3,6 +3,16 @@
   <form>
     <view class="title">泥票发行区</view>
     <view class="form_item">
+      <text class="form_txt">选择泥场</text>
+      <view class="form_content">
+        <picker mode="selector" value="{{yard}}" range="{{mud_list}}" range-key="yardName" bindchange="bindYardChange">
+          <view class="picker">
+            {{yard_txt}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="form_item">
       <text class="form_txt">发布公司名称</text>
       <view class="form_content"><input placeholder="请输入发布公司名称" value="{{company_name}}" bindinput="getCompanyName"></input></view>
     </view>
@@ -11,11 +21,19 @@
       <view class="form_content"><input placeholder="请输入泥票名称" value="{{coupon_name}}" bindinput="getCouponName"></input></view>
     </view>
     <view class="form_item">
+      <text class="form_txt">泥头容量</text>
+      <view class="form_content"><input placeholder="请输入泥头容量" type="number" value="{{capacity}}" bindinput="getCapacity"></input></view>
+    </view>
+    <view class="form_item">
       <text class="form_txt">泥头车次</text>
       <view class="form_content"><input placeholder="请输入泥头车次" type="number" value="{{car_num}}" bindinput="getCarNum"></input></view>
     </view>
     <view class="form_item">
-      <text class="form_txt">泥票有效时间</text>
+      <text class="form_txt">车次单价</text>
+      <view class="form_content"><input placeholder="请输入车次单价" type="number" value="{{price}}" bindinput="getPrice"></input></view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">开工日期</text>
       <view class="form_content">
         <picker mode="date" value="{{date}}" bindchange="bindDateChange">
           <view class="picker">
@@ -25,8 +43,33 @@
       </view>
     </view>
     <view class="form_item">
-      <text class="form_txt">车次单价</text>
-      <view class="form_content"><input placeholder="请输入车次单价" type="number" value="{{price}}" bindinput="getPrice"></input></view>
+      <text class="form_txt">上班时间</text>
+      <view class="form_content">
+        <picker mode="time" value="{{startDate}}" bindchange="bindStartDateChange">
+          <view class="picker">
+            {{startDate_txt}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">下班时间</text>
+      <view class="form_content">
+        <picker mode="time" value="{{endDate}}" bindchange="bindEndDateChange">
+          <view class="picker">
+            {{endDate_txt}}
+          </view>
+        </picker>
+      </view>
+    </view>
+    <view class="form_item">
+      <text class="form_txt">图片编号</text>
+      <view class="form_content noborder">
+        <view class="add_box" bindtap="chooseImage1">
+          <text wx:if="{{is_image1 == 0}}">+</text>
+          <image wx:else src="{{image1}}" mode="aspectFit"></image>
+        </view>
+      </view>
     </view>
     <!-- <view class="form_item">
       <text class="form_txt">装车所在地址</text>
@@ -54,16 +97,6 @@
         </picker>
       </view>
     </view> -->
-    
-    <view class="form_item">
-      <text class="form_txt">图片编号</text>
-      <view class="form_content noborder">
-        <view class="add_box" bindtap="chooseImage1">
-          <text wx:if="{{is_image1 == 0}}">+</text>
-          <image wx:else src="{{image1}}" mode="aspectFit"></image>
-        </view>
-      </view>
-    </view>
     
     <!-- 泥头开工所需手续 -->
     <!-- <view class="form_item">

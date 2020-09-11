@@ -1,6 +1,9 @@
 // pages/editCoupon/index.js
 import {
-  save_mud_ticket
+  save_mud_ticket,
+  get_mud_ticket,
+  query_mud_yard_head,
+  query_mud_yard_tail
 } from '../../api/api.js'
 import publicFun from '../../utils/public.js'
 const uploadUrl = 'http://192.168.31.115:9091'
@@ -12,17 +15,26 @@ Page({
    */
   data: {
     id: '', //促销券id
+    ticket_id: '',//泥票id
     type: '',  //泥头票：0  泥尾票：1
+    mud_list: [],
     company_name: '', //泥场名称
     coupon_name: '',
     price: '',
     car_num: '',
     address: '',
     count: '',
+    capacity: '',
+    yard_id: '',
+    yard_txt: '请选择泥场',
     date: '',
+    date_txt: '请选择开工日期',
+    startDate: '',
+    startDate_txt: '请选择上班时间',
+    endDate: '',
+    endDate_txt: '请选择下班时间',
     profit: '',
     frequence: '',
-    date_txt: '请选择泥票有效时间',
     region: '',
     region_txt: '请选择装车所在地址',
     is_edit: false,
@@ -81,15 +93,22 @@ Page({
       let type = '';
       if(options.type == 0){
         type = 'head';
+        this.getMudHead();
       }else{
         type = 'tail';
+        this.getMudTail();
       }
       this.setData({
         type: type
       })
     }
-    console.log(options.type)
-    this.getEditFinish();
+    console.log('泥票id:'+options.id)
+    if(options.id != ''){
+      this.setData({
+        ticket_id: options.id
+      })
+      // this.getTicketEdit();
+    }
   },
 
   /**
@@ -98,45 +117,42 @@ Page({
   onReady: function () {
 
   },
-
+  getMudHead(){
+    query_mud_yard_head({
+      current: 1,
+      size: 30
+    }).then((res)=>{
+      if(res.code == 200){
+        this.setData({
+          mud_list: res.data.records
+        })
+      }
+    })
+  },
+  getMudTail(){
+    query_mud_yard_tail({
+      current: 1,
+      size: 30
+    }).then((res)=>{
+      if(res.code == 200){
+        this.setData({
+          mud_list: res.data.records
+        })
+      }
+    })
+  },
   /**
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
     
   },
-  getEditFinish(save){
-    queryEditCouponInfo({
-      imageNum: this.data.id
+  getTicketEdit(save){
+    get_mud_ticket({
+      ticketId: this.data.ticket_id
     }).then((res)=>{
       if(res.code == 200){
-        if(save){
-          publicFun.getToast('编辑成功');
-          setTimeout(()=>{
-            let pages = getCurrentPages(); // 当前页的数据，
-            let prevPage = pages[pages.length - 2]; // 上一页的数据
-            prevPage.setData({
-              is_edit_back: true // 修改上一页的属性值；
-            })
-            wx.navigateBack({
-              delta: 1
-            })
-          },1500)
-        }else{
-          this.setData({
-            is_edit: res.data!=null?true:false,
-            couponId: res.data!=null?res.data.couponId:'',
-            coupon_name: res.data!=null?res.data.couponName:'',
-            count: res.data!=null?res.data.count:'',
-            price: res.data!=null?res.data.price:'',
-            profit: res.data!=null?res.data.profit:'',
-            frequence: res.data!=null?res.data.frequence:'',
-            date: res.data!=null?res.data.trem:'',
-            date_txt: res.data!=null?res.data.trem:'请选择泥票有效时间',
-            face: res.data!=null?res.data.value:'',
-          })
-        }
-        console.log(this.data.is_edit,this.data.couponId)
+        
       }
     })
   },
@@ -179,6 +195,11 @@ Page({
       company_name: e.detail.value
     })
   },
+  getCapacity(e){
+    this.setData({
+      capacity: e.detail.value
+    })
+  },
   getCouponName(e){
     this.setData({
       coupon_name: e.detail.value
@@ -214,11 +235,28 @@ Page({
       frequence: e.detail.value
     })
   },
+  bindYardChange: function(e) {
+    this.setData({
+      yard_id: this.data.mud_list[e.detail.value].yardId,
+      yard_txt: this.data.mud_list[e.detail.value].yardName
+    })
+  },
   bindDateChange: function(e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       date: e.detail.value,
       date_txt: e.detail.value
+    })
+  },
+  bindStartDateChange: function(e) {
+    this.setData({
+      startDate: e.detail.value,
+      startDate_txt: e.detail.value
+    })
+  },
+  bindEndDateChange: function(e) {
+    this.setData({
+      endDate: e.detail.value,
+      endDate_txt: e.detail.value
     })
   },
   bindRegionChange: function(e) {
@@ -330,39 +368,83 @@ Page({
     })
   },
   submitData(status){
-    // if(this.data.price == ''){
-    //   publicFun.getToast('请输入促销券价格');
-    //   return;
-    // }
-    // if(this.data.face == ''){
-    //   publicFun.getToast('请输入促销券面额');
-    //   return;
-    // }
-    // if(this.data.date == ''){
-    //   publicFun.getToast('请选择泥票有效时间');
-    //   return;
-    // }
-    // if(this.data.count == ''){
-    //   publicFun.getToast('请输入促销券有效次数');
-    //   return;
-    // }
-    // if(this.data.profit == ''){
-    //   publicFun.getToast('请输入代理人收益');
-    //   return;
-    // }
+    if(this.data.yard_id == ''){
+      publicFun.getToast('请选择泥场');
+      return;
+    }
+    if(this.data.company_name == ''){
+      publicFun.getToast('请输入发布公司名称');
+      return;
+    }
+    if(this.data.coupon_name == ''){
+      publicFun.getToast('请输入泥票名称');
+      return;
+    }
+    if(this.data.capacity == ''){
+      publicFun.getToast('请输入泥头容量');
+      return;
+    }
+    if(this.data.car_num == ''){
+      publicFun.getToast('请输入泥头车次');
+      return;
+    }
+    if(this.data.price == ''){
+      publicFun.getToast('请输入车次单价');
+      return;
+    }
+    if(this.data.date == ''){
+      publicFun.getToast('请选择开工日期');
+      return;
+    }
+    if(this.data.startDate == ''){
+      publicFun.getToast('请选择上班时间');
+      return;
+    }
+    if(this.data.endDate == ''){
+      publicFun.getToast('请选择下班时间');
+      return;
+    }
+    if(this.data.image1 == ''){
+      publicFun.getToast('请上传图片');
+      return;
+    }
+    
     let data = {
+      yardId: this.data.yard_id,
       companyName: this.data.company_name,
       ticketName: this.data.coupon_name,
       count: this.data.car_num,
       imageNum: this.data.image1,
       price: this.data.price,
       startDate: this.data.date,
+      startTime: this.data.startDate,
+      endTime: this.data.endDate,
+      capacity: this.data.capacity,
       type: this.data.type,
       status: status
     }
     save_mud_ticket(data).then((res)=>{
       if(res.code == 200){
-        
+        this.setData({
+          yard_id: "",
+          yard_txt: "请选择泥场",
+          companyName: "",
+          coupon_name: "",
+          car_num: "",
+          image1: "",
+          is_image1: 0,
+          price: "",
+          date: "",
+          date_txt: "请选择开工日期",
+          startDate: "",
+          startDate_txt: "请选择上班时间",
+          endDate: "",
+          endDate_txt: "请选择下班时间",
+          capacity: "",
+          type: this.data.type,
+          status: ""
+        })
+        publicFun.getToast(res.msg);
       }
     })
   },

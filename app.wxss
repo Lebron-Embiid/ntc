@@ -106,3 +106,27 @@ button{
   width: 36rpx;
   height: 36rpx;
 }
+
+
+
+.scroll_content{
+  white-space: nowrap;
+  width: 100%;
+  padding: 20rpx 5%;
+  box-sizing: border-box;
+}
+.scroll_item{
+  display: inline-block;
+  width: 300rpx;
+  margin-right: 30rpx;
+}
+.scroll_item .txt{
+  display: block;
+  color: #333333;
+  font-size: 28rpx;
+  text-align: center;
+  margin-bottom: 10rpx;
+}
+.scroll_item image{
+  width: 100%;
+}

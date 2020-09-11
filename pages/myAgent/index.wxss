@@ -1,1 +1,8 @@
 /* pages/myAgent/index.wxss */
+.head_left_name{
+  margin-bottom: 5rpx;
+}
+.head_left_iden{
+  color: #999999;
+  font-size: 24rpx;
+}

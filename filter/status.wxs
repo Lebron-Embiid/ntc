@@ -9,9 +9,43 @@
       status_txt = '未通过';
     }
     return status_txt;
+  },
+  filterStatus1: function(status){
+    var status_txt = '';
+    if(status == '0'){
+      status_txt = '已申请';
+    }else if(status == '1'){
+      status_txt = '已同意';
+    }else if(status == '2'){
+      status_txt = '已拒绝';
+    }
+    return status_txt;
+  },
+  indentityStatus: function(status){
+    var indentity_txt = '';
+    if(status == 'mb'){
+      indentity_txt = '泥场老板';
+    }else if(status == 'mg'){
+      indentity_txt = '泥场总经理';
+    }else if(status == 'mm'){
+      indentity_txt = '泥场经理';
+    }else if(status == 'ms'){
+      indentity_txt = '泥场员工';
+    }else if(status == 'mt'){
+      indentity_txt = '泥场出纳';
+    }else if(status == 'td'){
+      indentity_txt = '运输队司机';
+    }else if(status == 'tm'){
+      indentity_txt = '运输队经理';
+    }else if(status == 'tt'){
+      indentity_txt = '运输队出纳';
+    }
+    return indentity_txt;
   }
  }
-
+ 
  module.exports = {
-  filterStatus: status.filterStatus
+  filterStatus: status.filterStatus,
+  filterStatus1: status.filterStatus1,
+  indentityStatus: status.indentityStatus
  }
